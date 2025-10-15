@@ -1,10 +1,12 @@
 import './App.css'
+import Calendar from './components/Calendar'
 
 function App() {
   return (
-    <div className="app">
-      <h1>Hello World!</h1>
-      <p>Nomad Log - скоро тут будет трекер путешествий</p>
+    <div className="app" style={{ padding: 16 }}>
+      <h1>Nomad Log</h1>
+      <p>Трекер путешествий — стартовая версия</p>
+      <Calendar />
     </div>
   )
 }
