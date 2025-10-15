@@ -1,0 +1,3 @@
+[submodule "backend/cpp-logger"]
+	path = backend/cpp-logger
+	url = git@github.com:andreymisyurov/cpp-logger.git
