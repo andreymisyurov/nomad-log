@@ -12,6 +12,13 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(spdlog)
 
+FetchContent_Declare(
+  json
+  GIT_REPOSITORY https://github.com/nlohmann/json.git
+  GIT_TAG        v3.11.3
+)
+FetchContent_MakeAvailable(json)
+
 add_subdirectory(cpp-logger)
 
 add_executable(server
@@ -21,4 +28,4 @@ add_executable(server
 
 target_include_directories(server PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-target_link_libraries(server PRIVATE Logger)
+target_link_libraries(server PRIVATE Logger nlohmann_json::nlohmann_json)

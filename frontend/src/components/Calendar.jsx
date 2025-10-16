@@ -34,11 +34,20 @@ export default function Calendar() {
   const [labels, setLabels] = useState({})
 
   useEffect(() => {
-    const raw = localStorage.getItem(LS_KEY)
-    if (raw) setLabels(JSON.parse(raw))
+    fetch('http://localhost:8080/api/labels')
+      .then(res => res.json())
+      .then(data => setLabels(data))
+      .catch(err => console.error('Failed to load labels:', err))
   }, [])
+  
   useEffect(() => {
-    localStorage.setItem(LS_KEY, JSON.stringify(labels))
+    if (Object.keys(labels).length === 0) return;
+    
+    fetch('http://localhost:8080/api/labels', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(labels)
+    }).catch(err => console.error('Failed to save labels:', err))
   }, [labels])
 
   const grid = useMemo(() => monthGrid(viewDate), [viewDate])
